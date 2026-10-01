@@ -24,11 +24,12 @@ test('packed package installs and typechecks in an isolated consumer', async (co
   const { stdout } = await run('npm', ['pack', '--json', '--pack-destination', temporaryDirectory], packageDirectory)
   const [packed] = JSON.parse(stdout)
   const paths = packed.files.map(({ path }) => path)
+  assert.ok(paths.includes('LICENSE'))
   assert.ok(paths.includes('README.md'))
   assert.ok(paths.includes('package.json'))
   assert.ok(paths.includes('dist/index.js'))
   assert.ok(paths.includes('dist/session-do.d.ts'))
-  assert.ok(paths.every((path) => path === 'README.md' || path === 'package.json' || path.startsWith('dist/')))
+  assert.ok(paths.every((path) => path === 'LICENSE' || path === 'README.md' || path === 'package.json' || path.startsWith('dist/')))
 
   const consumerDirectory = join(temporaryDirectory, 'consumer')
   const tarball = join(temporaryDirectory, packed.filename)
