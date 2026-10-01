@@ -318,14 +318,14 @@ func validateHTTPPipeline(req httpStartRequest) error {
 			if !ok || image == "" {
 				return operationError(fmt.Errorf("image is required"))
 			}
-			if image != "annotation" && image != "/app/assets/cf-logo.png" {
-				return operationError(fmt.Errorf("image must be annotation or /app/assets/cf-logo.png"))
+			if image != "annotation" && image != "/app/assets/streamline-logo.png" {
+				return operationError(fmt.Errorf("image must be annotation or /app/assets/streamline-logo.png"))
 			}
 			position, ok, err := stringPipelineParam(params, "position")
 			if err != nil {
 				return operationError(err)
 			}
-			if !ok || (image == "/app/assets/cf-logo.png" && position != "top-right") ||
+			if !ok || (image == "/app/assets/streamline-logo.png" && position != "top-right") ||
 				(image == "annotation" && position != "full") {
 				return operationError(fmt.Errorf("overlay must use the fixed logo at top-right or annotation at full"))
 			}

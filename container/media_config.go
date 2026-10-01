@@ -60,7 +60,7 @@ func buildMediaConfig(
 			if image, ok := stringParam(operation.Params, "image"); ok {
 				if image == "annotation" {
 					result.AnnotationOverlay = true
-				} else if image == "/app/assets/cf-logo.png" {
+				} else if image == "/app/assets/streamline-logo.png" {
 					result.StaticLogoOverlay = true
 				}
 			}

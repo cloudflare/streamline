@@ -127,7 +127,7 @@ The Worker additionally accepts only canonical HTTPS `https://videodelivery.net/
 
 Unexpected oversized bodies return `413` before they enter container logic. The container requires 1–16 pipeline operations and exactly one encode operation. Both the container and production Worker restrict encoding to H.264. Only overlay, subtitle, filter, and encode operations are accepted. Each operation rejects parameters outside its exact allowlist:
 
-- Overlay requires one of two exact image/position pairs: `/app/assets/cf-logo.png` at `top-right`, or `annotation` at `full`.
+- Overlay requires one of two exact image/position pairs: `/app/assets/streamline-logo.png` at `top-right`, or `annotation` at `full`.
 - Subtitle accepts only optional `source: auto`.
 - Amount-based filters require `amount` and reject `degrees`; `flip` accepts neither; `rotate` requires `degrees` and rejects `amount`. Existing preset and numeric ranges remain enforced.
 - Encode accepts only `codec`, `preset`, `bitrate`, `resolution`, `fps`, and `gop`; when present, `codec` must be `h264`. The Go server enforces all supported values and bounds.
@@ -178,7 +178,7 @@ The Durable Object schedules session-ID-fenced cleanup when it writes relay stat
 
 ## Media Processing Safety
 
-- Static overlays are restricted to `/app/assets/cf-logo.png` at the top-right.
+- Static overlays are restricted to `/app/assets/streamline-logo.png` at the top-right.
 - Dynamic overlays use the literal `annotation` source at full-frame and a server-owned pipe.
 - Picture-in-picture accepts only an HLS or RTMPS primary input followed by one webcam input with a bounded scale and corner position.
 - Arbitrary filesystem paths are rejected by both Worker policy and Go protocol validation.

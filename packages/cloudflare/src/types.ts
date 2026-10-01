@@ -2,7 +2,7 @@ export type StreamOperation =
   | {
       op: 'overlay'
       params:
-        | { image: '/app/assets/cf-logo.png'; position: 'top-right' }
+        | { image: '/app/assets/streamline-logo.png'; position: 'top-right' }
         | { image: 'annotation'; position: 'full' }
     }
   | {

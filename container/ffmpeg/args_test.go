@@ -269,7 +269,7 @@ func TestBuildOverlayPipelineArgs(t *testing.T) {
 			expected: []string{
 				"-y",
 				"-f", "webm", "-thread_queue_size", "512", "-fflags", "+genpts", "-i", "/dev/fd/3",
-				"-i", "/app/assets/cf-logo.png",
+				"-i", "/app/assets/streamline-logo.png",
 				"-filter_complex", "[0:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:black[v0];[1:v]format=rgba,scale=600:-1[logo];[v0][logo]overlay=W-w-10:10:format=auto[v1];[v1]format=yuv420p[vout]",
 				"-map", "[vout]",
 				"-map", "0:a?",
@@ -326,7 +326,7 @@ func TestBuildOverlayPipelineArgs(t *testing.T) {
 			expected: []string{
 				"-y",
 				"-f", "webm", "-thread_queue_size", "512", "-fflags", "+genpts", "-i", "pipe:0",
-				"-i", "/app/assets/cf-logo.png",
+				"-i", "/app/assets/streamline-logo.png",
 				"-framerate", fmt.Sprintf("%d", media.AnnotationOverlayFPS),
 				"-f", "image2pipe", "-vcodec", "png", "-probesize", "32", "-i", "/dev/fd/3",
 				"-filter_complex", "[0:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:black[v0];[1:v]format=rgba,scale=600:-1[logo];[v0][logo]overlay=W-w-10:10:format=auto[v1];[2:v]fps=5,format=rgba[annotation];[v1][annotation]overlay=0:0:format=auto:eof_action=repeat[v2];[v2]format=yuv420p[vout]",

@@ -150,7 +150,7 @@ The pipeline is an ordered list with one required `encode` operation and up to
 
 ```ts
 type StreamOperation =
-  | { op: 'overlay'; params: { image: '/app/assets/cf-logo.png'; position: 'top-right' } }
+  | { op: 'overlay'; params: { image: '/app/assets/streamline-logo.png'; position: 'top-right' } }
   | { op: 'overlay'; params: { image: 'annotation'; position: 'full' } }
   | { op: 'subtitle'; params: { source: 'auto' } }
   | {
@@ -195,7 +195,7 @@ const result = await session.start({
   pipeline: [
     {
       op: 'overlay',
-      params: { image: '/app/assets/cf-logo.png', position: 'top-right' },
+      params: { image: '/app/assets/streamline-logo.png', position: 'top-right' },
     },
     {
       op: 'encode',

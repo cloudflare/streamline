@@ -229,7 +229,7 @@ func TestHTTPStartValidation(t *testing.T) {
 			name: "unapproved overlay path",
 			body: `{"input":{"type":"webcam"},"output":{"mode":"websocket"},` +
 				`"pipeline":[{"op":"overlay","params":{"image":"/tmp/untrusted.png"}}]}`,
-			want: "image must be annotation or /app/assets/cf-logo.png",
+			want: "image must be annotation or /app/assets/streamline-logo.png",
 		},
 		{
 			name: "invalid filter range",
@@ -511,7 +511,7 @@ func TestValidateHTTPPipelineAllowsOnlySupportedOverlayImages(t *testing.T) {
 		wantErr  bool
 	}{
 		{image: "annotation", position: "full"},
-		{image: "/app/assets/cf-logo.png", position: "top-right"},
+		{image: "/app/assets/streamline-logo.png", position: "top-right"},
 		{image: "https://example.test/image.png", position: "top-right", wantErr: true},
 		{image: "/app/assets/other.png", position: "top-right", wantErr: true},
 	}
@@ -528,7 +528,7 @@ func TestValidateHTTPPipelineAllowsOnlySupportedOverlayImages(t *testing.T) {
 			}
 			err := validateHTTPPipeline(req)
 			if tt.wantErr {
-				require.ErrorContains(t, err, "image must be annotation or /app/assets/cf-logo.png")
+				require.ErrorContains(t, err, "image must be annotation or /app/assets/streamline-logo.png")
 			} else {
 				require.NoError(t, err)
 			}
@@ -617,7 +617,7 @@ func TestValidateHTTPPipelineRejectsIgnoredOverlayParameters(t *testing.T) {
 				Output: &protocol.OutputConfig{Mode: "websocket"},
 				Pipeline: []protocol.Operation{
 					{Op: "overlay", Params: map[string]interface{}{
-						"image": "/app/assets/cf-logo.png", parameter: float64(1),
+						"image": "/app/assets/streamline-logo.png", parameter: float64(1),
 					}},
 					{Op: "encode"},
 				},
@@ -635,12 +635,12 @@ func TestValidateHTTPPipelineOverlayPositions(t *testing.T) {
 		wantErr  bool
 	}{
 		{name: "annotation full", image: "annotation", position: "full"},
-		{name: "logo top right", image: "/app/assets/cf-logo.png", position: "top-right"},
+		{name: "logo top right", image: "/app/assets/streamline-logo.png", position: "top-right"},
 		{name: "annotation position required", image: "annotation", wantErr: true},
 		{name: "annotation top right", image: "annotation", position: "top-right", wantErr: true},
-		{name: "logo position required", image: "/app/assets/cf-logo.png", wantErr: true},
-		{name: "logo top left", image: "/app/assets/cf-logo.png", position: "top-left", wantErr: true},
-		{name: "logo full", image: "/app/assets/cf-logo.png", position: "full", wantErr: true},
+		{name: "logo position required", image: "/app/assets/streamline-logo.png", wantErr: true},
+		{name: "logo top left", image: "/app/assets/streamline-logo.png", position: "top-left", wantErr: true},
+		{name: "logo full", image: "/app/assets/streamline-logo.png", position: "full", wantErr: true},
 		{name: "annotation center", image: "annotation", position: "center", wantErr: true},
 	}
 
@@ -693,7 +693,7 @@ func TestValidateHTTPPipelineSupportsOnlyH264(t *testing.T) {
 
 func TestValidateHTTPPipelineRestrictsSyntheticInputToCanonicalEncode(t *testing.T) {
 	tests := []protocol.Operation{
-		{Op: "overlay", Params: map[string]interface{}{"image": "/app/assets/cf-logo.png", "position": "top-right"}},
+		{Op: "overlay", Params: map[string]interface{}{"image": "/app/assets/streamline-logo.png", "position": "top-right"}},
 		{Op: "filter", Params: map[string]interface{}{"preset": "flip"}},
 		{Op: "subtitle", Params: map[string]interface{}{"source": "auto"}},
 		{Op: "encode", Params: map[string]interface{}{"codec": "h264"}},

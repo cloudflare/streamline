@@ -19,7 +19,7 @@ const session = await media.sessions.create()
 await session.start({
   input: { type: 'webcam' },
   pipeline: [
-    { op: 'overlay', params: { image: '/app/assets/cf-logo.png', position: 'top-right' } },
+    { op: 'overlay', params: { image: '/app/assets/streamline-logo.png', position: 'top-right' } },
     { op: 'encode', params: { codec: 'h264', resolution: '1280x720' } },
   ],
   output: { mode: 'websocket' },

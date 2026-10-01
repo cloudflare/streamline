@@ -298,7 +298,7 @@ func buildPipelineArgs(cfg media.SessionConfig, videoInput string, output string
 	}
 
 	if cfg.StaticLogoOverlay {
-		args = append(args, "-i", "/app/assets/cf-logo.png")
+		args = append(args, "-i", "/app/assets/streamline-logo.png")
 		staticLogoOverlayInput = nextInputIndex
 		nextInputIndex++
 	}

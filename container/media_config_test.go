@@ -50,7 +50,7 @@ func TestBuildMediaConfig(t *testing.T) {
 	t.Run("maps static overlay and encode operations", func(t *testing.T) {
 		result := buildMediaConfig(media.SourceWebcam, "", nil, []protocol.Operation{
 			{Op: "overlay", Params: map[string]interface{}{
-				"image": "/app/assets/cf-logo.png", "position": "top-right",
+				"image": "/app/assets/streamline-logo.png", "position": "top-right",
 			}},
 			{Op: "encode", Params: map[string]interface{}{
 				"codec": "h264", "preset": "slow", "bitrate": "3500k", "resolution": "1920x1080",
@@ -91,7 +91,7 @@ func TestBuildMediaConfig(t *testing.T) {
 	t.Run("maps static logo and annotation overlays independently", func(t *testing.T) {
 		result := buildMediaConfig(media.SourceHLS, "https://example.test/video.m3u8", nil, []protocol.Operation{
 			{Op: "overlay", Params: map[string]interface{}{
-				"image": "/app/assets/cf-logo.png", "position": "top-right",
+				"image": "/app/assets/streamline-logo.png", "position": "top-right",
 			}},
 			{Op: "overlay", Params: map[string]interface{}{"image": "annotation", "position": "full"}},
 			{Op: "encode"},
