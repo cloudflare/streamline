@@ -2,11 +2,15 @@
 
 ## Status
 
-This is the current unpublished self-hosted Worker API implemented by
+This is the current self-hosted Worker API implemented by
 `@cloudflare/streamline`. It is deliberately binding-shaped: application code
 uses a session and typed pipeline configuration rather than Durable Object or
 container methods. A future native Cloudflare binding can preserve this session
 model, but no native binding exists today.
+
+The npm package is versioned and published with Changesets as described in
+[Releasing](RELEASING.md). Check the changelog for the package version used by your
+application when updating an integration.
 
 The current package has two layers:
 

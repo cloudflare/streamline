@@ -25,6 +25,12 @@ HTTP session client. `../streamline-demo` contains the Astro UI, deployment
 profiles, Access policy, and a thin `MediaContainer` subclass that Wrangler
 registers for its deployment.
 
+The package is versioned with Changesets and published to npm by GitHub Actions
+using trusted publishing. This release process covers the Worker and client
+package; Container image publication and application deployment are separate.
+Applications must select compatible package and image versions. See
+[Releasing](docs/RELEASING.md) for the release process.
+
 ## Deployment Profiles
 
 ### Owner

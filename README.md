@@ -7,6 +7,7 @@ This repository contains the Container server and the reusable `@cloudflare/stre
 ## Build
 
 Requirements: Go 1.25.4+, Docker, and Node.js 22.12+ for `@cloudflare/streamline`.
+Use Node.js 24 and npm 11 for package development and release tooling.
 
 ```bash
 # Container tests and image
@@ -26,6 +27,17 @@ The Container image includes FFmpeg, CA certificates, and Liberation/DejaVu font
 
 Use an application such as [Streamline Demo](https://github.com/cloudflare/streamline-demo) to deploy Streamline. Applications consume a released `@cloudflare/streamline` package and configure a versioned Container image from the Cloudflare Registry. The application owns Worker configuration, auth, user interface, and media policy.
 
+## Package Releases
+
+`@cloudflare/streamline` in `packages/cloudflare` is the only npm package published
+from this repository. [Changesets](packages/cloudflare/.changeset/README.md) tracks
+version changes and release notes. The [release workflow](.github/workflows/release.yml)
+creates a release pull request on `main`, then tests and publishes the versioned
+package through npm trusted publishing when that pull request is merged.
+
+See the [release guide](docs/RELEASING.md) for maintainer setup and release steps.
+Container image publication and application deployment are managed separately.
+
 ## Documentation
 
 - [Architecture](ARCHITECTURE.md): components, trust boundaries, limits, and media flow.
@@ -33,6 +45,7 @@ Use an application such as [Streamline Demo](https://github.com/cloudflare/strea
 - [`@cloudflare/streamline`](packages/cloudflare/README.md): package API and Durable Object base class.
 - [Demo deployment guide](https://github.com/cloudflare/streamline-demo): owner and Playground deployments.
 - [Contributing](CONTRIBUTING.md) and [security reporting](SECURITY.md).
+- [Releasing](docs/RELEASING.md): Changesets, GitHub Actions, and npm trusted publishing.
 
 ## Security Model
 

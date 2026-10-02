@@ -3,6 +3,19 @@
   "version": "0.1.0",
   "description": "Session-oriented Cloudflare Worker and Durable Object primitives for Streamline",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudflare/streamline.git",
+    "directory": "packages/cloudflare"
+  },
+  "homepage": "https://github.com/cloudflare/streamline#readme",
+  "bugs": {
+    "url": "https://github.com/cloudflare/streamline/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "type": "module",
   "exports": {
     ".": {
@@ -19,13 +32,17 @@
   ],
   "scripts": {
     "build": "tsc --project tsconfig.json",
+    "changeset": "changeset",
     "prepack": "npm run build",
-    "test": "npm run build && node --import ./test/register-containers-loader.mjs --test test/*.test.mjs"
+    "test": "npm run build && node --import ./test/register-containers-loader.mjs --test test/*.test.mjs",
+    "version-packages": "changeset version && npm install --package-lock-only --ignore-scripts",
+    "release": "changeset publish"
   },
   "peerDependencies": {
     "@cloudflare/containers": "^0.3.7"
   },
   "devDependencies": {
+    "@changesets/cli": "3.0.3",
     "@cloudflare/containers": "^0.3.7",
     "@cloudflare/workers-types": "^5.20260914.1",
     "typescript": "^6.0.3"

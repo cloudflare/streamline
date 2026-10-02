@@ -15,6 +15,32 @@ npm test
 
 Run the relevant `streamline-demo` checks when a change affects the shared protocol, Container integration, or package API.
 
+## Changesets
+
+Use Node.js 24 and npm 11 for package development. Include a changeset when a
+change to `@cloudflare/streamline` should reach consumers, including API changes,
+bug fixes, runtime dependency updates, and changes to the published package.
+
+```bash
+cd packages/cloudflare
+npm run changeset
+npm run changeset -- status
+```
+
+Select `@cloudflare/streamline`, choose a patch, minor, or major bump, and write a
+short description of the effect on consumers. Commit the generated file under
+`packages/cloudflare/.changeset/` with your pull request. Use patch for compatible
+fixes, minor for compatible new features, and major for breaking changes; Changesets
+applies the selected bump literally, including while the package is at `0.x`.
+
+Documentation-only changes, test-only changes, and release tooling changes that
+do not affect the published package do not need a changeset. Container-only
+changes do not produce npm releases; add a package changeset if the Worker package
+also needs to change to stay compatible.
+
+The release workflow updates package versions, the lockfile, and the changelog in
+a separate pull request. See [Releasing](docs/RELEASING.md) for the maintainer flow.
+
 ## Design Boundaries
 
 - Keep Streamline independent of any application. `streamline-demo` may consume Streamline; Streamline must not import or depend on the demo.
