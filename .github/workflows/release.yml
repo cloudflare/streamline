@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  release:
+    if: github.repository == 'cloudflare/streamline' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    defaults:
+      run:
+        working-directory: packages/cloudflare
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          package-manager-cache: false
+
+      - name: Set up npm for trusted publishing
+        run: npm install --global npm@11.19.0
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test package and packed consumer
+        run: npm test
+
+      - name: Create release pull request or publish to npm
+        uses: changesets/action@v2
+        with:
+          cwd: packages/cloudflare
+          version-script: npm run version-packages
+          publish-script: npm run release
+          commit-message: 'chore: release @cloudflare/streamline'
+          pr-title: 'chore: release @cloudflare/streamline'
