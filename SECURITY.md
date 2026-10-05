@@ -2,7 +2,10 @@
 
 ## Supported Versions
 
-Security fixes are made against the current default branch and the latest release, when releases exist.
+Security fixes are made against the current default branch and the latest
+`@cloudflare/streamline` npm release. Package fixes use the
+[Changesets release process](docs/RELEASING.md); application and Container image
+rollouts are managed separately.
 
 ## Reporting A Vulnerability
 
